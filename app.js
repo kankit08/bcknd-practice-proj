@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.status(200).send("This is the HOME PAGE for AUTH System");
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { firstname, lastname, email, password, country } = req.body;
 
   //checking mandatory fields
@@ -26,7 +26,7 @@ app.post("/register", (req, res) => {
   }
 
   //checking existing user
-  const existingUser = User.findOne({ email });
+  const existingUser = await User.findOne({ email });
   if (existingUser) {
     res.status(401).send("User is alreday registered");
   }
