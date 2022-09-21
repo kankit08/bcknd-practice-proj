@@ -1,12 +1,15 @@
 //importing .env file
 require("dotenv").config();
 
-// for accesing json file in express
-app.use(express.json());
-
 //importing express from installed library
 const express = require("express");
 const app = express();
+
+//importing database connection to run
+require("./config/database").connect();
+
+// for accesing json file in express
+app.use(express.json());
 
 //importing user from model
 const User = require("./model/user");

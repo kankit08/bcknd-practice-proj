@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const { MONGODB_URL } = process.env;
 
 //connection of database:
-exports.connect(() => {
+exports.connect = () => {
   mongoose
     .connect(MONGODB_URL, {
       useUnifiedTopology: true,
@@ -18,4 +18,4 @@ exports.connect(() => {
       console.log(error);
       process.exit(1);
     });
-});
+};
