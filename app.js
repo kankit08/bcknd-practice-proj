@@ -14,6 +14,9 @@ app.use(express.json());
 //importing user from model
 const User = require("./model/user");
 
+//importing bcryptjs from library
+const bcrypt = require("bcryptjs");
+
 //Routes
 
 app.get("/", (req, res) => {
@@ -33,6 +36,9 @@ app.post("/register", async (req, res) => {
   if (existingUser) {
     res.status(401).send("User is alreday registered");
   }
+
+  //Encrypt the password
+  const myEncryptPassword = await bcrypt.hash(password, 10);
 });
 
 module.exports = app;
