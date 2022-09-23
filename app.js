@@ -17,6 +17,9 @@ const User = require("./model/user");
 //importing bcryptjs from library
 const bcrypt = require("bcryptjs");
 
+// importing jwtToken from library
+const jwt = require("jsonwebtoken");
+
 //Routes
 
 app.get("/", (req, res) => {
@@ -48,6 +51,13 @@ app.post("/register", async (req, res) => {
     password: myEncryptPassword,
     country,
   });
+
+  //Creating Token
+  const token = jwt.sign({ user_id: user._id, email }, process.env.SECRET_KEY, {
+    expiresIn: "2h",
+  });
+  user.token = token;
+  user.status(201).json(user);
 });
 
 module.exports = app;
