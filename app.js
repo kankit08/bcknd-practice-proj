@@ -23,7 +23,7 @@ const jwt = require("jsonwebtoken");
 //Routes
 
 app.get("/", (req, res) => {
-  res.status(200).send("This is the HOME PAGE for AUTH System");
+  res.status(200).send("This is the HOME PAGE for AUTH System V2");
 });
 
 app.post("/register", async (req, res) => {
@@ -62,7 +62,11 @@ app.post("/register", async (req, res) => {
       }
     );
     user.token = token;
-    user.status(201).json(user);
+
+    //hide password in postman
+    user.password = undefined;
+
+    res.status(201).json(user);
   } catch (error) {
     console.log(error);
   }
