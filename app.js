@@ -110,4 +110,9 @@ app.post("/login", async (req, res) => {
   }
 });
 
+//Dasboard route:
+app.get("/dashboard", (req, res) => {
+  res.status(200).send(`Welcome to Dashbord Secret Path`);
+});
+
 module.exports = app;
