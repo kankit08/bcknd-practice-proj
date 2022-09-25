@@ -1,6 +1,6 @@
 // For writing custom middlewares for user authentication
 
-const auth = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 //Setting the token at multiple places
 const auth = (req, res, next) => {

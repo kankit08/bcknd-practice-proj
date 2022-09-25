@@ -11,8 +11,9 @@ require("./config/database").connect();
 // for accesing json file in express
 app.use(express.json());
 
-//importing user from model
+//importing user from model and auth
 const User = require("./model/user");
+const auth = require("./middleware/auth");
 
 //importing bcryptjs from library
 const bcrypt = require("bcryptjs");
@@ -111,7 +112,7 @@ app.post("/login", async (req, res) => {
 });
 
 //Dasboard route:
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard", auth, (req, res) => {
   res.status(200).send(`Welcome to Dashbord Secret Path`);
 });
 
