@@ -13,4 +13,13 @@ const auth = (req, res, next) => {
   if (!token) {
     res.status(403).send("Token is missing!!!");
   }
+
+  //Verifying the token
+  try {
+    const decode = jwt.verify(token, process.env.SECRET_KEY);
+    console.log(decode);
+  } catch (error) {
+    return res.status(403).send("Invalid Token");
+  }
+  return next();
 };
