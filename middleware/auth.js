@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 //Setting the token at multiple places
 const auth = (req, res, next) => {
   const token =
-    req.cookies.token ||
     req.header("Authorization").replace("Bearer ", "") ||
+    req.cookies.token ||
     req.body.token;
 
   // Checking whether the token is present or not
