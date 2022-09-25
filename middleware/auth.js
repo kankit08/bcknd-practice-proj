@@ -8,4 +8,9 @@ const auth = (req, res, next) => {
     req.cookies.token ||
     req.header("Authorization").replace("Bearer ", "") ||
     req.body.token;
+
+  // Checking whether the token is present or not
+  if (!token) {
+    res.status(403).send("Token is missing!!!");
+  }
 };
